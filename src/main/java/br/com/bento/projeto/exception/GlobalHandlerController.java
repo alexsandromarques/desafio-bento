@@ -21,5 +21,10 @@ public class GlobalHandlerController {
     public ResponseEntity<String> cepInvalidoException(ArquivoObrigatorioException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+    
+    @ExceptionHandler(DadosIncompletoException.class)
+    public ResponseEntity<String> dadosIncompletoException(DadosIncompletoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 
 }

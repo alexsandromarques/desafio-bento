@@ -19,6 +19,7 @@ import br.com.bento.projeto.entity.Endereco;
 import br.com.bento.projeto.entity.Funcionario;
 import br.com.bento.projeto.exception.ArquivoObrigatorioException;
 import br.com.bento.projeto.exception.CEPInvalidoException;
+import br.com.bento.projeto.exception.DadosIncompletoException;
 import br.com.bento.projeto.exception.FuncionarioNaoEncontradoException;
 import br.com.bento.projeto.repository.EmpresaRepository;
 import br.com.bento.projeto.repository.FuncionarioRepository;
@@ -54,23 +55,28 @@ public class FuncionarioService {
 			bufferedReader.readLine();
 
 			while ((linha = bufferedReader.readLine()) != null) {
-
+				
 				String[] dados = linha.split(";");
+				
+				if (dados.length >= 4) {
+					String cpf = dados[0];
+					String nome = dados[1];
+					Endereco endereco = consultarEnderecoPorCep(dados[2]);
+					Empresa empresaExiste = empresaRepository.findByCnpj(dados[3]);
 
-				String cpf = dados[0];
-				String nome = dados[1];
-				Endereco endereco = consultarEnderecoPorCep(dados[2]);
-				Empresa empresaExiste = empresaRepository.findByCnpj(dados[3]);
+					Funcionario funcionario;
+					if (empresaExiste != null) {
+						funcionario = new Funcionario(cpf, nome, endereco, empresaExiste);
+					} else {
+						Empresa empresaNova = consultarEmpresaPorCNPJ(dados[3]);
+						funcionario = new Funcionario(cpf, nome, endereco, empresaNova);
+					}
 
-				Funcionario funcionario;
-				if (empresaExiste != null) {
-					funcionario = new Funcionario(cpf, nome, endereco, empresaExiste);
+					salvar(funcionario);
 				} else {
-					Empresa empresaNova = consultarEmpresaPorCNPJ(dados[3]);
-					funcionario = new Funcionario(cpf, nome, endereco, empresaNova);
+					throw new DadosIncompletoException();
 				}
-
-				salvar(funcionario);
+				
 			}
 		} catch (IOException e) {
 			throw new RuntimeException("Erro ao processar o arquivo CSV: " + e.getMessage());
