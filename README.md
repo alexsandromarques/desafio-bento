@@ -20,23 +20,23 @@ O objetivo deste desafio é avaliar as habilidades de desenvolvimento consideran
 
 **Configurar o Banco de Dados**
 
-	Instale e inicie o PostgreSQL
-	Crie um banco de dados vazio com o nome `desafio`
-	Atualize as configurações do banco de dados em `src/main/resources/application.properties`
+1. Instale e inicie o PostgreSQL
+2. Crie um banco de dados vazio com o nome `desafio`
+3. Atualize as configurações do banco de dados em `src/main/resources/application.properties`
 
 **Executar a Aplicação**
 
-	Utilize sua IDE preferida ou execute o seguinte comando via terminal na pasta raiz do projeto: mvn spring-boot:run
+- Utilize sua IDE preferida ou execute o seguinte comando via terminal na pasta raiz do projeto: mvn spring-boot:run
 
 **Endpoints da API**
 
-   - `/funcionario/upload`: POST - Realiza o upload do arquivo CSV com os dados dos funcionários
-   - `/funcionario/todos`: GET - Retorna todos os dados dos funcionários
-   - `/funcionario/cpf/{cpf}`: GET - Retorna um funcionário por CPF
+- `/funcionario/upload`: POST - Realiza o upload do arquivo CSV com os dados dos funcionários
+- `/funcionario/todos`: GET - Retorna todos os dados dos funcionários
+- `/funcionario/cpf/{cpf}`: GET - Retorna um funcionário por CPF
    
 **Documentação do Swagger**
 
-   - `/swagger-ui/index.html`
+- `/swagger-ui/index.html`
    
 ## Autor
 
