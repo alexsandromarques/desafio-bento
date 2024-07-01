@@ -16,7 +16,7 @@ O objetivo deste desafio é avaliar as habilidades de desenvolvimento consideran
 
 **Clonar o repositório**
 
-	git clone https://github.com/seu-usuario/nome-do-repositorio.git
+	git clone https://github.com/alexsandromarques/desafio-bento.git
 
 **Configurar o Banco de Dados**
 
